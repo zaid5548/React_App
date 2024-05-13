@@ -7,17 +7,20 @@ import {useState} from 'react';
 
 function App() {
 
-let [counter,setCounter] = useState(0);
+let [counter,setCounter] = useState(0); // 0 is initial value
 
 const addCounter = () => {
   if(counter<20){
-    setCounter(counter+1)
+    setCounter(prevCounter => prevCounter + 1)
+    setCounter(prevCounter => prevCounter + 1)
+    setCounter(prevCounter => prevCounter + 1)
+    setCounter(prevCounter => prevCounter + 1)
   }
 }
 
 const removeCounter = () => {
   if(counter>0){
-    setCounter(counter-1)
+    setCounter(prevCounter => prevCounter - 1)
   }
 }
 
