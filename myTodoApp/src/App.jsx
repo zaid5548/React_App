@@ -1,14 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
-import { TodoProvider } from "./context/TodoContext";
-import TodoForm from "./components/TodoForm";
-import TodoItem from "./components/TodoItem";
+import MyTodoForm from "./components/MyTodoForm";
+import { MyTodoProvider } from "./contexts/MyTodoContext";
 
 function App() {
   const [todos, setTodos] = useState([]);
 
   const addTodo = (todo) => {
-    setTodos((prev) => [...prev , { id: Date.now(), ...todo }]);
+    setTodos((prev) => [{ id: Date.now(), ...todo }, ...prev]);
   };
 
   const updateTodo = (id, todo) => {
@@ -18,11 +17,11 @@ function App() {
   };
 
   const deleteTodo = (id) => {
-    setTodos((prev) => prev.filter((todo) => todo.id !== id))
+    setTodos((prev) => prev.filter((todo) => todo.id !== id));
   };
 
   const toggleComplete = (id) => {
-    setTodos((prev) =>
+    setTodos((preve) =>
       prev.map((prevTodo) =>
         prevTodo.id === id
           ? { ...prevTodo, completed: !prevTodo.completed }
@@ -31,20 +30,8 @@ function App() {
     );
   };
 
-  useEffect(() => {
-    const todos = JSON.parse(localStorage.getItem("todos"));
-
-    if (todos && todos.length > 0) {
-      setTodos(todos);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
-
   return (
-    <TodoProvider
+    <MyTodoProvider
       value={{ todos, addTodo, updateTodo, deleteTodo, toggleComplete }}
     >
       <div className="bg-[#172842] min-h-screen py-8">
@@ -52,20 +39,21 @@ function App() {
           <h1 className="text-2xl font-bold text-center mb-8 mt-2">
             Manage Your Todos
           </h1>
-          <div className="mb-4">{/* Todo form goes here */}
-            <TodoForm />
+          <div className="mb-4">
+            {/* Todo form goes here */}
+            <MyTodoForm />
           </div>
           <div className="flex flex-wrap gap-y-3">
             {/*Loop and Add TodoItem here */}
             {todos.map((todo)=>(
               <div key={todo.id} className="w-full">
-                <TodoItem todo={todo} />
-              </div>
+              <MyTodoForm todo={todo} />
+            </div>
             ))}
           </div>
         </div>
       </div>
-    </TodoProvider>
+    </MyTodoProvider>
   );
 }
 
