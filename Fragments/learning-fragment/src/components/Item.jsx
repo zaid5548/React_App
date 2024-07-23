@@ -1,6 +1,8 @@
+import styles from "../Item.module.css"
+
 const Item = ({food}) =>{
     return <>
-        <li key={food} className="list-group-item">
+        <li className={`${styles.kgItem}`}>
           {food}
         </li>
     </>

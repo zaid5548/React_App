@@ -4,7 +4,7 @@ const FoodItems = ({ items }) => {
   return (
     <>
       {items.map((item) => (
-        <Item food={item} />
+        <Item key={item} food={item} />
       ))}
     </>
   );
