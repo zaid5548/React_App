@@ -1,0 +1,14 @@
+.buttonsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .button {
+    flex: 0 1 calc(33.33% - 6px); /* Adjust width to fit three buttons per row, accounting for margins */
+    height: 45px;
+    margin: 3px;
+    background-color: rgb(233, 231, 231);
+    box-sizing: border-box; /* Ensure padding and border are included in the width and height */
+  }
+  

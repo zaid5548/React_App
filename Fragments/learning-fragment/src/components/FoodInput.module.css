@@ -1,0 +1,10 @@
+.foodInput{
+    margin: 10px;
+    padding: 5px;
+}
+
+.addFood{
+    color: rgb(252, 255, 252);
+    background-color: green;
+    margin: 10px;
+}

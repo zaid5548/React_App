@@ -1,0 +1,7 @@
+.display{
+    margin: 10px;
+    width: 600px;
+    font-size: 25px;
+    min-width: 280px;
+    max-width: 380px;
+  }
