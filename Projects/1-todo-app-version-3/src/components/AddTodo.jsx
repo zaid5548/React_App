@@ -1,25 +1,19 @@
 import styles from "./AddTodo.module.css";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { MdLibraryAdd } from "react-icons/md";
 
 function AddTodo({ addTodo }) {
-  const [todo, setTodo] = useState("");
-  const [date, setDate] = useState("");
-
-  const handleTodoChange = (event) => {
-    setTodo(event.target.value);
-  };
-
-  const handleDateChange = (event) => {
-    setDate(event.target.value);
-  };
+  const todoNameElement = useRef();
+  const todoDateElement = useRef();
 
   const handleAddButtonClicked = (e) => {
     e.preventDefault();
+    let todo = todoNameElement.current.value;
+    let date = todoDateElement.current.value;
+    todoNameElement.current.value = "";
+    todoDateElement.current.value = "";
     if (todo != "" && date != "") {
       addTodo(todo, date);
-      setTodo("");
-      setDate("");
     } else {
       alert("Please enter Todo Name & Todo Date");
     }
@@ -33,9 +27,8 @@ function AddTodo({ addTodo }) {
             <input
               className={styles.inputTodo}
               type="text"
+              ref={todoNameElement}
               placeholder="Enter Todo Here"
-              value={todo}
-              onChange={handleTodoChange}
             />
           </div>
           <div className="col-4">
@@ -44,8 +37,7 @@ function AddTodo({ addTodo }) {
               type="date"
               name=""
               id=""
-              value={date}
-              onChange={handleDateChange}
+              ref={todoDateElement}
             />
           </div>
           <div className="col-2">

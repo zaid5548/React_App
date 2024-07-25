@@ -14,10 +14,9 @@ function App() {
   const [todoItems, setTodoItems] = useState(data);
 
   const onNewItem = (todo, date) => {
-    const newTodo = [...todoItems, { name: todo, date: date }];
+    // const newTodo = [...todoItems, { name: todo, date: date }];
     // console.log("Added " + todo+" "+date);
-    setTodoItems(newTodo);
-    console.log(newTodo);
+    setTodoItems((prevTodo)=>[...prevTodo,{ name: todo, date: date }]);
   };
 
   const deleteItem = (todoName) => {
