@@ -14,7 +14,8 @@ function AddTodo({ addTodo }) {
     setDate(event.target.value);
   };
 
-  const handleAddButtonClicked = () => {
+  const handleAddButtonClicked = (e) => {
+    e.preventDefault();
     if (todo != "" && date != "") {
       addTodo(todo, date);
       setTodo("");
@@ -27,7 +28,7 @@ function AddTodo({ addTodo }) {
   return (
     <>
       <div className="container text-center">
-        <div className="row kg-row">
+        <form onSubmit={handleAddButtonClicked} className="row kg-row">
           <div className="col-6">
             <input
               className={styles.inputTodo}
@@ -48,15 +49,11 @@ function AddTodo({ addTodo }) {
             />
           </div>
           <div className="col-2">
-            <button
-              type="button"
-              className="btn btn-success kg-button"
-              onClick={handleAddButtonClicked}
-            >
+            <button type="submit" className="btn btn-success kg-button">
               <MdLibraryAdd />
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </>
   );
