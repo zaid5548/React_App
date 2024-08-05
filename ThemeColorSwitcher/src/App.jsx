@@ -12,19 +12,19 @@ function App() {
 
   const yellowTheme=()=>{
     setColorThemeMode("dark")
-    document.querySelector('h2').classList.remove('black','white')
-    document.querySelector('h2').classList.add('white')
+    document.querySelector('h2').classNameList.remove('black','white')
+    document.querySelector('h2').classNameList.add('white')
   }
 
   const whiteTheme=()=>{
     setColorThemeMode("white")
-    document.querySelector('h2').classList.remove('black','white')
-    document.querySelector('h2').classList.add('black')
+    document.querySelector('h2').classNameList.remove('black','white')
+    document.querySelector('h2').classNameList.add('black')
   }
 
   useEffect(() => {
-    document.querySelector('html').classList.remove("white", "dark")
-    document.querySelector('html').classList.add(colorThemeMode)
+    document.querySelector('html').classNameList.remove("white", "dark")
+    document.querySelector('html').classNameList.add(colorThemeMode)
   }, [colorThemeMode])
 
   return (
